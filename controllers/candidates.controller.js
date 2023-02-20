@@ -21,4 +21,14 @@ function read(req, res) {}
  * @param {*} req 
  * @param {*} res 
  */
-function create(req, res) {}
+function create(req, res) {
+	(async _ => {
+		let candidate = req.body;
+		candidate.id = lib.createId(null, 10);
+		await conf.collections.candidates.insertOne(candidate);
+		send.ok(res, candidate);
+	})().catch(err => {
+		console.error(err);
+		send.serverError(res);
+	});
+}
