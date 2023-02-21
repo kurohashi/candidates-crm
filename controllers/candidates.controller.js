@@ -73,7 +73,7 @@ function create(req, res) {
 		let candidate = req.body;
 		candidate.id = lib.createId(null, 10);
 		await conf.collections.candidates.insertOne(candidate);
-		send.ok(res, candidate);
+		send.created(res, candidate);
 	})().catch(err => {
 		console.error(err);
 		send.serverError(res);
