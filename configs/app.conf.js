@@ -9,6 +9,11 @@ module.exports = new (function () {
 		this.appid = "";		// put production appid here
 	}
 
+	this.limits = {
+		candidates: 25,
+		maxCandidates: 100,
+	};
+
 	this.crypto = {
 		gen: {
 			salt: "general-random-salt",

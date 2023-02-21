@@ -6,11 +6,11 @@ module.exports = function(app){
 		.get(ctrl.read)
 		.post(ctrl.create);
 
-	app.route("/candidates/:id")
-		.get(ctrl.read);
-
 	app.route("/candidates/search")
-		.get(ctrl.read);
+		.get(ctrl.search);
+
+	app.route("/candidates/:id")
+		.get(ctrl.readOne);
 }	
 	
 
