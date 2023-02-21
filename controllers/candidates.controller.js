@@ -26,7 +26,7 @@ function search(req, res) {
  */
 function read(req, res) {
 	(async _ => {
-		let limit = conf.limits.candidates, skip = 0, qrLimit = req.query.limit, qrPage = req.query.page, query = req.query;
+		let limit = conf.limits.candidates, skip = 0, qrLimit = req.query.limit, qrPage = req.query.page, query = req.params.search ? req.query : {};
 		delete req.query.page;
 		delete req.query.limit;
 
