@@ -8,7 +8,7 @@ exports.isAuthenticated = function (req, res, cb) {
 	if (auth.indexOf("Bearer") == 0)
 		auth = auth.slice(7);
 	try {
-		jwt.verify(auth);
+		jwt.verify(auth, conf.crypto.jwt.secret);
 		cb(null, req, res);
 	} catch (error) {
 		console.error(JSON.stringify(error));

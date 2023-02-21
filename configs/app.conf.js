@@ -19,6 +19,9 @@ module.exports = new (function () {
 			salt: "general-random-salt",
 			iterations: 10,
 			keyLen: 80,
+		},
+		jwt: {
+			secret: "986146a7a343594be0e9aa78fcb5a8808cd3472c",
 		}
 	};
 })();
