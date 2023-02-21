@@ -35,12 +35,15 @@ function read(req, res) {
 		if (!isNaN(qrPage) && Number(qrPage) > 1)
 			skip = (Number(qrPage) - 1) * limit;
 
+		let data = await conf.collections.candidates.find(query).skip(skip).limit(limit).project({ _id: 0 }).toArray();
+		if (!data.length)
+			return send.notFound(res);
 		send.ok(res, {
 			current_page: (skip / limit) + 1,
 			from: skip + 1,
-			to: skip + limit,
+			to: skip + data.length,
 			per_page: limit,
-			data: await conf.collections.candidates.find(query).skip(skip).limit(limit).project({ _id: 0 }).toArray(),
+			data: data,
 		});
 	})().catch(err => {
 		console.error(err);
@@ -56,6 +59,8 @@ function read(req, res) {
 function readOne(req, res) {
 	(async _ => {
 		let foo = await conf.collections.candidates.find({ id: req.params.id }).project({ _id: 0 }).toArray();
+		if (!foo.length)
+			return send.notFound(res);
 		return send.ok(res, foo[0]);
 	})().catch(err => {
 		console.error(err);
