@@ -17,8 +17,6 @@ class Database {
     }, {
       key: { first_name: 1 }
     }, {
-      key: { first_name: 1 }
-    }, {
       key: { last_name: 1 }
     }, {
       key: { email: 1 },
